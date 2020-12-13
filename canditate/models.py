@@ -5,7 +5,7 @@ from elector.models import Elector
 class Candidate(models.Model):
     first_name = models.CharField(max_length=255,null=True)
     last_name = models.CharField(max_length=255,null=True)
-    picture = models.ImageField(upload_to='media/candidates',null=True)
+    picture = models.ImageField(upload_to='candidates',null=True)
     political_party = models.CharField(max_length=255,null=True)
     date_add = models.DateField(auto_now_add=True)
     date_updated = models.DateField(auto_now=True)
