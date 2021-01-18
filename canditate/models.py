@@ -19,7 +19,7 @@ class Vote(models.Model):
     """
     the vote class defines votes and voters and candidates interaction with them.
     """
-    vote_title = models.CharField(max_length=255,null=True,blank=True)
+    vote_title = models.CharField(max_length=25,null=True,blank=True)
     vote_description = models.TextField(null=True,blank=True)
     voters = models.ManyToManyField(Elector)
     candidates = models.ManyToManyField(Candidate)
@@ -27,3 +27,6 @@ class Vote(models.Model):
     end_date = models.DateTimeField(null=True,blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_edites = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.vote_title

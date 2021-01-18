@@ -29,8 +29,6 @@ class Elector(models.Model):
     sexe = models.CharField(max_length=255,choices=SEXE_CHOICES, null=True)
     date_of_issuance = models.DateField(auto_now_add=True)
     date_of_expire = models.DateField(null=True)
-    has_vote = models.BooleanField(default=False,null=True)
-    candidate_id = models.PositiveIntegerField(null=True,default=0)
 
 
     def __str__(self):
@@ -40,3 +38,11 @@ class Elector(models.Model):
         if not self.pk :
             self.elector_id = str(uuid.uuid4())[0:10]
         super(Elector, self).save(*args, **kwargs)
+
+
+class File(models.Model):
+    file = models.FileField(blank=False, null=False)
+    electorId = models.CharField(max_length=10,null=True,blank=True)
+
+    def __str__(self):
+        return self.file.name

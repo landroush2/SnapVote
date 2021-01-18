@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import ListAPIView
 from rest_framework.filters import SearchFilter, OrderingFilter
+
 # import models
 from canditate.models import Candidate, Vote
 from canditate.api.serializers import CandidateSerializer, VoteSerializer
@@ -29,8 +30,14 @@ class ApiCandidateListView(ListAPIView):
     queryset = Candidate.objects.all()
 
 
-class ApiVoteListView(ListAPIView):
-    serializer_class = VoteSerializer
-    filter_backends = (SearchFilter, OrderingFilter)
-    search_fields = ['vote_title', 'id',]
-    queryset = Vote.objects.all()
+@api_view(['GET', ])
+def api_vote_list(request, electorId):
+    try:
+        votes = Vote.objects.exclude(voters__elector_id=electorId)
+        print(votes)
+    except Vote.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = VoteSerializer(votes,many=True)
+        return Response(serializer.data)

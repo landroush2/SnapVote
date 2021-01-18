@@ -10,12 +10,12 @@ class CandidateAdmin(admin.ModelAdmin):
 
 @register(Vote)
 class VoteAdmin(admin.ModelAdmin):
-    list_display = ['id','vote_title','vote_description','count_voters', 'count_canditates','start_date','end_date',]
+    list_display = ['vote_title','vote_description','count_voters', 'count_canditates','start_date','end_date',]
     search_fields = ['vote_title', 'start_date', 'end_date']
     list_filter = ['candidates',]
 
     def has_change_permission(self, request, obj=None):
-        return False
+        return True
 
     def count_voters(self, obj):
         return str(obj.voters.all().count())

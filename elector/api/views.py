@@ -1,12 +1,15 @@
-import json
-
-from django.contrib.auth.models import User
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import FileUploadParser
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 # import models
 from elector.models import Elector
 from elector.api.serializers import ElectorSerializer
+# import serializer
+from .serializers import FileSerializer
 
 @api_view(['GET', ])
 def api_detail_elector_view(request, id):
@@ -47,3 +50,4 @@ def api_elector_vote_view(request,id):
             'success': 'Your vote was registered with succes'
         }
         return Response(data)
+

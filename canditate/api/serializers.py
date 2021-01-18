@@ -10,7 +10,9 @@ class CandidateSerializer(serializers.ModelSerializer):
 
 class VoteSerializer(serializers.ModelSerializer):
 
+    candidates = CandidateSerializer(many=True)
+
     class Meta:
         model = Vote
-        fields = ['id','vote_title', 'vote_description','candidates', 'start_date', 'end_date']
+        fields = ['id','vote_title', 'vote_description','candidates', 'voters', 'start_date', 'end_date']
 
