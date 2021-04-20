@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
     'rest_framework',
     'canditate.apps.CanditateConfig',
     'elector.apps.ElectorConfig',
@@ -48,7 +47,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -76,7 +75,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'facevote.wsgi.application'
+## WSGI_APPLICATION = 'facevote.facevote.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -146,16 +145,19 @@ REST_FRAMEWORK = {
 # Admin style config
 JAZZMIN_SETTINGS = {
     # title of the window
-    "site_title": "Face vote",
+    "site_title": "SnapVote",
 
     # Title on the brand, and the login screen (19 chars max)
-    "site_header": "Face Voting",
+    "site_header": "SnapVote",
+
+    # Logo of the title
+    "site_logo"
 
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to the Face voting app",
+    "welcome_sign": "Welcome to SnapVote",
 
     # Copyright on the footer
-    "copyright": "face vote",
+    "copyright": "SnapVote",
 
     # The model admin to search from the search bar, search bar omitted if excluded
     "search_model": "auth.User",
@@ -264,6 +266,3 @@ JAZZMIN_SETTINGS = {
     "language_chooser": True,
 }
 
-CORS_ORIGIN_ALLOW_ALL =  True
-
-django_heroku.settings(locals())
